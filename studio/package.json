@@ -1,0 +1,14 @@
+{
+  "name": "the-palms-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "sanity dev", "build": "sanity build", "deploy": "sanity deploy" },
+  "dependencies": {
+    "sanity": "^3.50.0",
+    "@sanity/vision": "^3.50.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0"
+  }
+}

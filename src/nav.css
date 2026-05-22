@@ -1,0 +1,651 @@
+/* ============================================================
+   UnifiedNav — cinematic dark-glass navbar
+   Used across index.html, massagens.html, massagistas.html
+   ============================================================ */
+
+:root {
+  --unav-bg: rgba(10, 8, 7, 0.6);
+  --unav-bg-scrolled: rgba(10, 8, 7, 0.85);
+  --unav-border: rgba(232, 184, 122, 0.12);
+  --unav-border-scrolled: rgba(232, 184, 122, 0.22);
+  --unav-ink: #f5ecd9;
+  --unav-ink-dim: rgba(245, 236, 217, 0.6);
+  --unav-amber: #d97735;
+  --unav-amber-glow: rgba(217, 119, 53, 0.5);
+  --unav-h: 76px;
+  --unav-h-scrolled: 60px;
+}
+
+/* Spacer reserves layout space below the fixed nav */
+.unav-spacer {
+  height: var(--unav-h);
+  width: 100%;
+}
+
+/* ============ Main bar ============ */
+.unav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--unav-h);
+  background: var(--unav-bg);
+  /* Frosted glass — subtle until scrolled */
+  backdrop-filter: blur(8px) saturate(1.1);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  border-bottom: 1px solid transparent;
+  transform: translate3d(0, 0, 0);
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+.unav--scrolled {
+  height: var(--unav-h-scrolled);
+  background: var(--unav-bg-scrolled);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border-bottom-color: var(--unav-border-scrolled);
+  box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.unav--hidden {
+  transform: translate3d(0, -100%, 0);
+}
+
+/* When in 'left-rail' mode and scrolled past hero, the main bar fades out
+   while the left rail fades in */
+.unav--rail-active {
+  transform: translate3d(0, -100%, 0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Soft amber line that ignites when scrolled */
+.unav-glow {
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--unav-amber-glow) 18%,
+    var(--unav-amber-glow) 82%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.unav--scrolled .unav-glow { opacity: 0.7; }
+
+/* ============ Inner grid ============ */
+.unav-inner {
+  height: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 3vw, 44px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+
+/* ============ Wordmark ============ */
+.unav-mark {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--unav-ink);
+  line-height: 1;
+  transition: opacity 0.3s ease;
+}
+.unav-mark:hover { opacity: 0.85; }
+
+.unav-mark-glyph {
+  font-size: clamp(20px, 1.8vw, 26px);
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: font-size 0.3s ease, letter-spacing 0.3s ease;
+}
+.unav-mark-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--unav-ink-dim);
+  font-weight: 500;
+  transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.unav--scrolled .unav-mark-glyph {
+  font-size: clamp(17px, 1.4vw, 21px);
+  letter-spacing: 0.22em;
+}
+.unav--scrolled .unav-mark-sub {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* ============ Center: links ============ */
+.unav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 38px);
+}
+.unav-link {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 11.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--unav-ink-dim);
+  text-decoration: none;
+  padding: 8px 2px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.unav-link:hover,
+.unav-link.is-active { color: var(--unav-ink); }
+
+/* Animated underline — sweeps from left to right on hover */
+.unav-link-underline {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1px;
+  width: 100%;
+  background: var(--unav-amber);
+  transform: scaleX(0);
+  transform-origin: 0% 50%;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 8px var(--unav-amber-glow);
+}
+.unav-link:hover .unav-link-underline {
+  transform: scaleX(1);
+}
+.unav-link.is-active .unav-link-underline {
+  transform: scaleX(0.6);
+  transform-origin: 50% 50%;
+}
+
+/* ============ Right: coords + CTA ============ */
+.unav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.unav-coords {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.32em;
+  color: var(--unav-ink-dim);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, max-width 0.3s ease;
+  overflow: hidden;
+  max-width: 200px;
+}
+.unav--scrolled .unav-coords {
+  opacity: 0;
+  max-width: 0;
+  margin: 0;
+}
+
+.unav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 18px;
+  background: var(--unav-amber);
+  border: 1px solid var(--unav-amber);
+  color: #0a0807;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  box-shadow:
+    0 0 0 0 rgba(217, 119, 53, 0),
+    0 6px 18px -6px rgba(217, 119, 53, 0.45);
+}
+.unav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.unav-cta:hover {
+  background: #e88845;
+  box-shadow:
+    0 0 0 4px rgba(217, 119, 53, 0.18),
+    0 12px 28px -8px rgba(217, 119, 53, 0.55);
+  transform: translateY(-1px);
+}
+.unav-cta:hover::before { transform: translateX(100%); }
+.unav-cta:active { transform: translateY(0); }
+.unav-cta-arrow {
+  font-size: 14px;
+  transition: transform 0.25s ease;
+}
+.unav-cta:hover .unav-cta-arrow { transform: translateX(3px); }
+
+/* ============ Hamburger (mobile only) ============ */
+.unav-burger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--unav-border-scrolled);
+  border-radius: 2px;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.unav-burger:hover { border-color: var(--unav-amber-glow); }
+.unav-burger span {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  height: 1px;
+  background: var(--unav-ink);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease, top 0.25s ease;
+}
+.unav-burger span:nth-child(1) { top: 13px; }
+.unav-burger span:nth-child(2) { top: 19px; }
+.unav-burger span:nth-child(3) { top: 25px; }
+.unav--menu-open .unav-burger span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+.unav--menu-open .unav-burger span:nth-child(2) { opacity: 0; }
+.unav--menu-open .unav-burger span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
+
+/* ============ Mobile drawer ============ */
+.unav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(10, 8, 7, 0.96);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  display: flex;
+  flex-direction: column;
+  padding: 100px clamp(28px, 6vw, 60px) 48px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+.unav-drawer.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0s linear 0s;
+}
+.unav-drawer::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: -20%;
+  right: -20%;
+  height: 50%;
+  background: radial-gradient(ellipse at center,
+    rgba(217, 119, 53, 0.18) 0%,
+    transparent 60%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+.unav-drawer-close {
+  position: absolute;
+  top: 22px;
+  right: clamp(20px, 4vw, 44px);
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid rgba(245, 236, 217, 0.15);
+  border-radius: 50%;
+  color: var(--unav-ink);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.unav-drawer-close:hover {
+  border-color: var(--unav-amber);
+  background: rgba(217, 119, 53, 0.08);
+  transform: rotate(90deg);
+}
+
+.unav-drawer-eye {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--unav-amber);
+  font-weight: 600;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.unav-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+.unav-drawer-link {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  font-size: clamp(38px, 7vw, 56px);
+  font-weight: 400;
+  color: var(--unav-ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245, 236, 217, 0.06);
+  letter-spacing: 0.005em;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.25s ease;
+}
+.unav-drawer.is-open .unav-drawer-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+.unav-drawer-link:hover {
+  color: var(--unav-amber);
+}
+.unav-drawer-link.is-active .unav-drawer-num {
+  color: var(--unav-amber);
+}
+.unav-drawer-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--unav-ink-dim);
+  font-weight: 600;
+  align-self: center;
+}
+.unav-drawer-label {
+  font-family: inherit;
+}
+
+.unav-drawer-cta {
+  margin-top: 40px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 26px;
+  background: var(--unav-amber);
+  border: 1px solid var(--unav-amber);
+  color: #0a0807;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 12px 28px -8px rgba(217, 119, 53, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.unav-drawer-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -8px rgba(217, 119, 53, 0.6);
+}
+
+.unav-drawer-foot {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--unav-ink-dim);
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 1100px) {
+  .unav-coords { display: none; }
+  .unav-links { gap: 18px; }
+  .unav-link { font-size: 10.5px; letter-spacing: 0.18em; }
+}
+
+@media (max-width: 880px) {
+  .unav-links,
+  .unav-right { display: none; }
+  .unav-burger { display: block; }
+  .unav-inner { grid-template-columns: 1fr auto; }
+  .unav-mark-sub { display: none; }
+  :root {
+    --unav-h: 64px;
+    --unav-h-scrolled: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  .unav-mark-glyph { font-size: 17px; letter-spacing: 0.16em; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .unav,
+  .unav-cta,
+  .unav-link-underline,
+  .unav-drawer,
+  .unav-drawer-link {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   LEFT RAIL — vertical text strip pinned to left edge after scroll
+   ============================================================ */
+.unav-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 0;
+  background:
+    linear-gradient(90deg,
+      rgba(10, 8, 7, 0.92) 0%,
+      rgba(10, 8, 7, 0.78) 60%,
+      rgba(10, 8, 7, 0.4) 100%);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-right: 1px solid rgba(232, 184, 122, 0.18);
+  /* Hidden by default — slides in from left when active */
+  transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.45s ease 0.05s,
+    border-color 0.4s ease;
+}
+.unav-rail.is-active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Soft amber vertical glow on the right edge of the rail */
+.unav-rail::after {
+  content: '';
+  position: absolute;
+  top: 18%;
+  bottom: 18%;
+  right: -1px;
+  width: 1px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    var(--unav-amber-glow) 30%,
+    var(--unav-amber-glow) 70%,
+    transparent 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.2s;
+}
+.unav-rail.is-active::after { opacity: 0.5; }
+
+/* Wordmark — rotated 180° vertical (reads bottom-to-top, classic editorial) */
+.unav-rail-mark {
+  display: block;
+  text-decoration: none;
+  color: var(--unav-ink);
+  transition: color 0.25s ease;
+}
+.unav-rail-mark:hover { color: var(--unav-amber); }
+.unav-rail-mark-glyph {
+  display: block;
+  font-size: 17px;
+  letter-spacing: 0.36em;
+  white-space: nowrap;
+  color: var(--unav-ink);
+  /* Rotate so text reads bottom-to-top */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 400;
+}
+
+/* Divider line between mark and links */
+.unav-rail-divider {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(245, 236, 217, 0.18) 50%,
+    transparent 100%);
+}
+
+/* Vertical stack of nav links — also rotated, reads bottom-to-top */
+.unav-rail-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+.unav-rail-link {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(245, 236, 217, 0.82);
+  text-decoration: none;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 4px 6px;
+  transition: color 0.25s ease, letter-spacing 0.3s ease;
+}
+.unav-rail-link::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 0;
+  background: var(--unav-amber);
+  transform: translateX(-50%);
+  transition: height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 0 8px var(--unav-amber-glow);
+}
+.unav-rail-link:hover { color: var(--unav-ink); }
+.unav-rail-link:hover::before { height: 14px; }
+.unav-rail-link.is-active {
+  color: var(--unav-amber);
+  letter-spacing: 0.4em;
+  text-shadow: 0 0 12px rgba(217, 119, 53, 0.45);
+}
+.unav-rail-link.is-active::before {
+  height: 22px;
+  box-shadow: 0 0 12px var(--unav-amber), 0 0 4px var(--unav-amber);
+}
+
+/* Tiny RESERVAR pill at the bottom of the rail */
+.unav-rail-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 110px;
+  padding: 14px 0;
+  border: 1px solid var(--unav-amber);
+  background: transparent;
+  color: var(--unav-amber);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.34em;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+.unav-rail-cta span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.unav-rail-cta:hover {
+  background: var(--unav-amber);
+  color: #0a0807;
+  box-shadow: 0 0 0 4px rgba(217, 119, 53, 0.16),
+              0 12px 28px -8px rgba(217, 119, 53, 0.55);
+  transform: translateY(-2px);
+}
+
+/* On mobile, hide the rail — mobile uses the hamburger drawer */
+@media (max-width: 880px) {
+  .unav-rail { display: none; }
+  /* In rail mode on mobile, the main bar shouldn't hide */
+  .unav--rail-active {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .unav-rail { transition: opacity 0.2s ease; transform: none; }
+  .unav-rail:not(.is-active) { display: none; }
+}

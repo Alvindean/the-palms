@@ -1,0 +1,17 @@
+{
+  "hero": "assets/palms-illustration.png?v=5",
+  "guardian": "assets/guardian.jpg",
+  "og": "assets/og.png",
+  "feature1": "assets/photo-stairway.avif",
+  "feature2": "assets/photo-oasis.avif",
+  "feature3": "assets/photo-stairs-blue.avif",
+  "feature4": "assets/photo-blue-room.avif",
+  "gallery1": "assets/photo-stairway.avif",
+  "gallery2": "assets/photo-oasis.avif",
+  "gallery3": "assets/photo-pool.png",
+  "gallery4": "assets/photo-blue-room.avif",
+  "gallery5": "assets/photo-foodog.png",
+  "gallery6": "assets/photo-stairs-blue.avif",
+  "gallery7": "assets/photo-courtyard.png",
+  "gallery8": "assets/photo-bamboo.png"
+}

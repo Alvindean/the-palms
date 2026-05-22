@@ -1,0 +1,311 @@
+[
+  {
+    "name": "Bia",
+    "tag": "Quatro Mãos",
+    "touch": "Toque lento",
+    "years": 11,
+    "img": "assets/therapists/02-bia.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Camila",
+    "tag": "Quatro Mãos",
+    "touch": "Toque firme",
+    "years": 6,
+    "img": "assets/therapists/03-camila.jpg"
+  },
+  {
+    "name": "Lara",
+    "tag": "Casal",
+    "touch": "Toque lento",
+    "years": 7,
+    "img": "assets/therapists/04-lara.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Mia",
+    "tag": "Casal",
+    "touch": "Toque contemplativo",
+    "years": 12,
+    "img": "assets/therapists/05-mia.jpg"
+  },
+  {
+    "name": "Nina",
+    "tag": "Sensorial",
+    "touch": "Toque firme",
+    "years": 3,
+    "img": "assets/therapists/06-nina.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Iris",
+    "tag": "Pedras Quentes",
+    "touch": "Toque lento",
+    "years": 10,
+    "img": "assets/therapists/07-iris.jpg"
+  },
+  {
+    "name": "Sofia",
+    "tag": "Quatro Mãos",
+    "touch": "Toque contemplativo",
+    "years": 11,
+    "img": "assets/therapists/08-sofia.jpg",
+    "size": "medium"
+  },
+  {
+    "name": "Helena",
+    "tag": "Pedras Quentes",
+    "touch": "Toque lento",
+    "years": 10,
+    "img": "assets/therapists/09-helena.jpg"
+  },
+  {
+    "name": "Kali",
+    "tag": "Sensorial",
+    "touch": "Toque contemplativo",
+    "years": 8,
+    "img": "assets/therapists/10-kali.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Aurora",
+    "tag": "Quatro Mãos",
+    "touch": "Toque firme",
+    "years": 11,
+    "img": "assets/therapists/41-diana.jpg"
+  },
+  {
+    "name": "Vivi",
+    "tag": "Casal",
+    "touch": "Toque firme",
+    "years": 7,
+    "img": "assets/therapists/12-vivi.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Luna",
+    "tag": "Sensorial",
+    "touch": "Toque firme",
+    "years": 3,
+    "img": "assets/therapists/13-luna.jpg"
+  },
+  {
+    "name": "Yara",
+    "tag": "Pedras Quentes",
+    "touch": "Toque firme",
+    "years": 10,
+    "img": "assets/therapists/14-yara.jpg",
+    "size": "medium"
+  },
+  {
+    "name": "Pérola",
+    "tag": "Quatro Mãos",
+    "touch": "Toque firme",
+    "years": 6,
+    "img": "assets/therapists/15-perola.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Alma",
+    "tag": "Casal",
+    "touch": "Toque firme",
+    "years": 12,
+    "img": "assets/therapists/16-alma.jpg"
+  },
+  {
+    "name": "Bianca",
+    "tag": "Casal",
+    "touch": "Toque lento",
+    "years": 7,
+    "img": "assets/therapists/17-bianca.jpg"
+  },
+  {
+    "name": "Chloe",
+    "tag": "Tântrico",
+    "touch": "Toque firme",
+    "years": 4,
+    "img": "assets/therapists/18-chloe.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Dora",
+    "tag": "Sensorial",
+    "touch": "Toque contemplativo",
+    "years": 3,
+    "img": "assets/therapists/19-dora.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Eva",
+    "tag": "Casal",
+    "touch": "Toque lento",
+    "years": 7,
+    "img": "assets/therapists/20-eva.jpg"
+  },
+  {
+    "name": "Flora",
+    "tag": "Sensorial",
+    "touch": "Toque lento",
+    "years": 3,
+    "img": "assets/therapists/21-flora.jpg",
+    "size": "medium"
+  },
+  {
+    "name": "Gaia",
+    "tag": "Sensorial",
+    "touch": "Toque lento",
+    "years": 3,
+    "img": "assets/therapists/22-gaia.jpg"
+  },
+  {
+    "name": "Hanna",
+    "tag": "Tântrico",
+    "touch": "Toque firme",
+    "years": 9,
+    "img": "assets/therapists/23-hanna.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Isa",
+    "tag": "Sensorial",
+    "touch": "Toque lento",
+    "years": 8,
+    "img": "assets/therapists/24-isa.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Joy",
+    "tag": "Tântrico",
+    "touch": "Toque lento",
+    "years": 9,
+    "img": "assets/therapists/25-joy.jpg"
+  },
+  {
+    "name": "Bella",
+    "tag": "Sensorial",
+    "touch": "Toque firme",
+    "years": 3,
+    "img": "assets/therapists/26-bella.jpg",
+    "size": "medium"
+  },
+  {
+    "name": "Maya",
+    "tag": "Pedras Quentes",
+    "touch": "Toque contemplativo",
+    "years": 5,
+    "img": "assets/therapists/27-maya.jpg"
+  },
+  {
+    "name": "Naia",
+    "tag": "Pedras Quentes",
+    "touch": "Toque lento",
+    "years": 10,
+    "img": "assets/therapists/28-naia.jpg"
+  },
+  {
+    "name": "Olívia",
+    "tag": "Pedras Quentes",
+    "touch": "Toque lento",
+    "years": 5,
+    "img": "assets/therapists/29-olivia.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Sky",
+    "tag": "Tântrico",
+    "touch": "Toque contemplativo",
+    "years": 4,
+    "img": "assets/therapists/30-sky.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Tati",
+    "tag": "Pedras Quentes",
+    "touch": "Toque contemplativo",
+    "years": 5,
+    "img": "assets/therapists/31-tati.jpg"
+  },
+  {
+    "name": "Uma",
+    "tag": "Tântrico",
+    "touch": "Toque lento",
+    "years": 4,
+    "img": "assets/therapists/32-uma.jpg",
+    "size": "medium"
+  },
+  {
+    "name": "Vera",
+    "tag": "Quatro Mãos",
+    "touch": "Toque lento",
+    "years": 11,
+    "img": "assets/therapists/40-claudia.jpg"
+  },
+  {
+    "name": "Wanda",
+    "tag": "Tântrico",
+    "touch": "Toque contemplativo",
+    "years": 4,
+    "img": "assets/therapists/34-wanda.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Xênia",
+    "tag": "Casal",
+    "touch": "Toque firme",
+    "years": 7,
+    "img": "assets/therapists/35-xenia.jpg"
+  },
+  {
+    "name": "Yume",
+    "tag": "Tântrico",
+    "touch": "Toque contemplativo",
+    "years": 9,
+    "img": "assets/therapists/42-elisa.jpg"
+  },
+  {
+    "name": "Zara",
+    "tag": "Quatro Mãos",
+    "touch": "Toque lento",
+    "years": 11,
+    "img": "assets/therapists/37-zara.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Tina",
+    "tag": "Tântrico",
+    "touch": "Toque firme",
+    "years": 9,
+    "img": "assets/therapists/38-tina.jpg"
+  },
+  {
+    "name": "Anya",
+    "tag": "Quatro Mãos",
+    "touch": "Toque contemplativo",
+    "years": 6,
+    "img": "assets/therapists/39-anya.jpg",
+    "size": "tall"
+  },
+  {
+    "name": "Cláudia",
+    "tag": "Tântrico",
+    "touch": "Toque lento",
+    "years": 4,
+    "img": "assets/therapists/40-claudia.jpg"
+  },
+  {
+    "name": "Diana",
+    "tag": "Pedras Quentes",
+    "touch": "Toque lento",
+    "years": 10,
+    "img": "assets/therapists/41-diana.jpg",
+    "size": "short"
+  },
+  {
+    "name": "Elisa",
+    "tag": "Casal",
+    "touch": "Toque lento",
+    "years": 7,
+    "img": "assets/therapists/42-elisa.jpg",
+    "size": "medium"
+  }
+]
